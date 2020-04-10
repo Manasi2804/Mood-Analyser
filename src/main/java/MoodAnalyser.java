@@ -1,5 +1,6 @@
 public class MoodAnalyser {
     public static void main(String[] args)
+
     private String returnMessage;
     public String analyseMood(String message)
     {
