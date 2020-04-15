@@ -1,12 +1,13 @@
-public class MoodAnalyser
-{
+public class MoodAnalyser {
     private String message;
     private String returnMessage;
+
     //no-arg constructor
     public MoodAnalyser()
     {
 
     }
+
     //parametrized constructor
     public MoodAnalyser(String message)
 
@@ -19,18 +20,21 @@ public class MoodAnalyser
         this.message = message;
         return analyseMood();
     }
+
+    // Overloaded analyseMood method
     public String analyseMood()
     {
-        if (message.equals("I am in Sad Mood"))
+        try
         {
-            returnMessage="SAD";
+            returnMessage = (message.contains("Sad")) ? "SAD" : "HAPPY";
         }
-        else if (message.equals("I am in Happy Mood"))
+        catch (NullPointerException e)
         {
-            returnMessage="HAPPY";
+            return "HAPPY";
         }
         return returnMessage;
     }
+
     public static void main(String args[])
     {
         System.out.println("Welcome to Mood Analyser");
