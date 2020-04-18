@@ -1,42 +1,43 @@
 public class MoodAnalyser {
     private String message;
-    private String returnMessage;
 
-    //no-arg constructor
+    // no -arg constructor
     public MoodAnalyser()
     {
 
     }
-
-    //parametrized constructor
+    // parametrized constructor
     public MoodAnalyser(String message)
-
     {
-        this.message = message;
+            this.message = message;
     }
-
-    public String analyseMood(String message)
-    {
-        this.message = message;
-        return analyseMood();
-    }
-
-    // Overloaded analyseMood method
-    public String analyseMood()
+    // Method that return the mood
+    public String moodAnalyser(String mood) throws MoodAnalyserException
     {
         try
         {
-            returnMessage = (message.contains("Sad")) ? "SAD" : "HAPPY";
+            if (message.length() == 0)
+            {
+                throw new MoodAnalyserException(MoodAnalyserException.MyException_Type.EMPTY, "You entered empty mood,please enter valid mood");
+            }
+            if (message.contains("sad"))
+            {
+                return ("sad");
+            }
+            else if (message.contains("happy"))
+            {
+                return ("happy");
+            }
         }
         catch (NullPointerException e)
         {
-            return "HAPPY";
+            throw new MoodAnalyserException(MoodAnalyserException.MyException_Type.NULL, "You entered null mood,please enter valid mood");
         }
-        return returnMessage;
+        return (mood);
     }
-
-    public static void main(String args[])
+    //main method
+    public static void main(String[] args)
     {
-        System.out.println("Welcome to Mood Analyser");
+        System.out.println("Welcome to mood analyser problems");
     }
 }
