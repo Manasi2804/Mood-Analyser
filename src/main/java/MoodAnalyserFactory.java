@@ -1,26 +1,25 @@
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
-public class MoodAnalyserFactory
-{
+public class MoodAnalyserFactory {
+
     //Return class object
-    public static Constructor<?> getConstructor(String className, Class methodName) throws MoodAnalyserException
-    {
+    public static Constructor<?> getConstructor(String className, Class methodName) throws MoodAnalyserException {
         try
         {
-            Class <?> moodAnalyser=Class.forName(className);
+            Class<?> moodAnalyser = Class.forName(className);
             return moodAnalyser.getConstructor(methodName);
         }
         catch (ClassNotFoundException e)
         {
-            throw new MoodAnalyserException(MoodAnalyserException.MyException_Type.CLASS_NOT_FOUND,"Please enter valid class name");
+            throw new MoodAnalyserException(MoodAnalyserException.MyException_Type.CLASS_NOT_FOUND, "Please enter valid class name");
         }
         catch (NoSuchMethodException e)
         {
-            throw new MoodAnalyserException(MoodAnalyserException.MyException_Type.METHOD_NOT_FOUND,"Please enter valid method name");
+            throw new MoodAnalyserException(MoodAnalyserException.MyException_Type.METHOD_NOT_FOUND, "Please enter valid method name");
         }
     }
-
     //Return the constructor instance
     public static MoodAnalyser createMoodAnalyzer() throws MoodAnalyserException
     {
@@ -33,7 +32,7 @@ public class MoodAnalyserFactory
         }
         catch (ClassNotFoundException e)
         {
-            throw new MoodAnalyserException(MoodAnalyserException.MyException_Type.CLASS_NOT_FOUND,"Please enter valid class name");
+            throw new MoodAnalyserException(MoodAnalyserException.MyException_Type.CLASS_NOT_FOUND, "Please enter valid class name");
         }
         catch (IllegalAccessException e)
         {
@@ -45,14 +44,12 @@ public class MoodAnalyserFactory
         }
         catch (NoSuchMethodException e)
         {
-            throw new MoodAnalyserException(MoodAnalyserException.MyException_Type.METHOD_NOT_FOUND,"please enter valid method");
+            throw new MoodAnalyserException(MoodAnalyserException.MyException_Type.METHOD_NOT_FOUND, "please enter valid method");
         }
         return null;
     }
-
     // Return class object with parameter constructor
-    public static Object getParametericConstructor(String className,Class methodName,String mood) throws MoodAnalyserException
-    {
+    public static Object getParametericConstructor(String className, Class methodName, String mood) throws MoodAnalyserException {
         try
         {
             Class<?> moodAnalyser = Class.forName(className);
@@ -61,11 +58,11 @@ public class MoodAnalyserFactory
         }
         catch (ClassNotFoundException e)
         {
-            throw new MoodAnalyserException(MoodAnalyserException.MyException_Type.CLASS_NOT_FOUND,"Please enter valid Class name");
+            throw new MoodAnalyserException(MoodAnalyserException.MyException_Type.CLASS_NOT_FOUND, "Please enter valid Class name");
         }
         catch (NoSuchMethodException e)
         {
-            throw new MoodAnalyserException(MoodAnalyserException.MyException_Type.METHOD_NOT_FOUND,"Please enter valid method name");
+            throw new MoodAnalyserException(MoodAnalyserException.MyException_Type.METHOD_NOT_FOUND, "Please enter valid method name");
         }
         catch (IllegalAccessException e)
         {
@@ -81,10 +78,8 @@ public class MoodAnalyserFactory
         }
         return (mood);
     }
-
     //Return class object when class name improper with parameter
-    public static Object getClassNameImproperWithParameter(String className,Class methodName,String mood) throws MoodAnalyserException
-    {
+    public static Object getClassNameImproperWithParameter(String className, Class methodName, String mood) throws MoodAnalyserException {
         try
         {
             Class<?> moodAnalyser = Class.forName(className);
@@ -113,5 +108,15 @@ public class MoodAnalyserFactory
         }
         return (mood);
     }
-
+    // Return message
+    public static String moodAnalyser(MoodAnalyser message, String methodName) throws MoodAnalyserException {
+        try
+        {
+            return (String) message.getClass().getMethod(methodName).invoke(message);
+        } catch (Exception e)
+        {
+            //throw new MoodAnalysisException(MoodAnalysisException.MyException_Type.METHOD_NOT_FOUND,"Please enter valid method name");
+        }
+        return null;
+    }
 }

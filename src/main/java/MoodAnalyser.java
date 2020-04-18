@@ -1,6 +1,7 @@
 import java.util.Objects;
 
-public class MoodAnalyser {
+public class MoodAnalyser
+{
     private String message;
 
     // no -arg constructor
@@ -35,7 +36,7 @@ public class MoodAnalyser {
         {
             throw new MoodAnalyserException(MoodAnalyserException.MyException_Type.NULL, "You entered null mood,please enter valid mood");
         }
-        return (mood);
+        return (null);
     }
     //main method
     public static void main(String[] args)
