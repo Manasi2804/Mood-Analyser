@@ -37,6 +37,12 @@ public class MoodAnalyser {
         }
         return (mood);
     }
+    //main method
+    public static void main(String[] args)
+    {
+        System.out.println("Welcome to mood analyser problems");
+    }
+
     @Override
     public boolean equals(Object o)
     {
@@ -50,11 +56,6 @@ public class MoodAnalyser {
         }
         MoodAnalyser that = (MoodAnalyser) o;
         return Objects.equals(message, that.message);
-    }
-    //main method
-    public static void main(String[] args)
-    {
-        System.out.println("Welcome to mood analyser problems");
     }
 
 }
