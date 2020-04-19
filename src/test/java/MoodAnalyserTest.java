@@ -88,7 +88,8 @@ public class MoodAnalyserTest {
             Object returnMood = MoodAnalyserFactory.getParametericConstructor("com.moodanalyser.MoodAnalyser", String.class, "i am in happy mood");
             boolean result = returnMood.equals(mood);
             Assert.assertEquals(true, result);
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             e.printStackTrace();
         }
     }
@@ -161,7 +162,7 @@ public class MoodAnalyserTest {
             Constructor<?> constructor = MoodAnalyserFactory.getConstructor("MoodAnalyzer", String.class);
             MoodAnalyser moodAnalyze = MoodAnalyserFactory.createMoodAnalyzer();
             MoodAnalyserFactory.setFieldMoodAnalyser(moodAnalyze, "message", "i am in happy mood");
-            String analyser = MoodAnalyserFactory.moodAnalyser((MoodAnalyser) moodAnalyze, "moodAnalyzer");
+            String analyser = MoodAnalyserFactory.moodAnalyser( (MoodAnalyser)moodAnalyze ,"moodAnalyser");
             Assert.assertEquals("happy", analyser);
         } catch (Exception e) {
             e.printStackTrace();
@@ -172,7 +173,7 @@ public class MoodAnalyserTest {
     @Test
     public void givenSetField_WhenImproper_ThenThrowException() throws MoodAnalyserException {
         try {
-            Constructor<?> constructor = MoodAnalyserFactory.getConstructor("com.moodanalysis.MoodAnalyzer", String.class);
+            Constructor<?> constructor = MoodAnalyserFactory.getConstructor("com.moodanalyser.MoodAnalyzer", String.class);
             MoodAnalyser moodAnalyze = MoodAnalyserFactory.createMoodAnalyzer();
             MoodAnalyserFactory.setFieldMoodAnalyser(moodAnalyze, "message", "i am in happy mood");
             String analyser = MoodAnalyserFactory.moodAnalyser((MoodAnalyser) moodAnalyze, "moodAnalyser");
@@ -184,11 +185,14 @@ public class MoodAnalyserTest {
 
     // Test 7.3:Setting null message with reflector should throw exception
     @Test
-    public void givenMessageWithReflector_WhenNull_ShouldThrowException() {
-        try {
+    public void givenMessageWithReflector_WhenNull_ShouldThrowException()
+    {
+        try
+        {
             MoodAnalyser moodAnalyze = MoodAnalyserFactory.createMoodAnalyzer();
             MoodAnalyserFactory.setFieldMoodAnalyser(moodAnalyze, "message", null);
-        } catch (MoodAnalyserException e) {
+        } catch (MoodAnalyserException e)
+        {
             Assert.assertEquals(MoodAnalyserException.MyException_Type.NULL, e.type);
         }
     }
