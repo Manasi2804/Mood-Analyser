@@ -133,7 +133,8 @@ public class MoodAnalyserTest {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
             e.printStackTrace();
-        }
+        }catch (MoodAnalyserException e) {
+    }
     }
 
     // Test 6.2:Given message when improper should throw MoodAnalysis Exception
@@ -171,14 +172,18 @@ public class MoodAnalyserTest {
 
     // Test 7.2:Set field When improper then throw exception
     @Test
-    public void givenSetField_WhenImproper_ThenThrowException() throws MoodAnalyserException {
-        try {
+    public void givenSetField_WhenImproper_ThenThrowException() throws MoodAnalyserException
+    {
+        try
+        {
             Constructor<?> constructor = MoodAnalyserFactory.getConstructor("com.moodanalyser.MoodAnalyzer", String.class);
             MoodAnalyser moodAnalyze = MoodAnalyserFactory.createMoodAnalyzer();
             MoodAnalyserFactory.setFieldMoodAnalyser(moodAnalyze, "message", "i am in happy mood");
             String analyser = MoodAnalyserFactory.moodAnalyser((MoodAnalyser) moodAnalyze, "moodAnalyser");
             Assert.assertEquals(null, analyser);
-        } catch (MoodAnalyserException e) {
+        }
+        catch (MoodAnalyserException e)
+        {
             Assert.assertEquals(MoodAnalyserException.MyException_Type.NO_SUCH_FIELD, e.type);
         }
     }
@@ -191,7 +196,8 @@ public class MoodAnalyserTest {
         {
             MoodAnalyser moodAnalyze = MoodAnalyserFactory.createMoodAnalyzer();
             MoodAnalyserFactory.setFieldMoodAnalyser(moodAnalyze, "message", null);
-        } catch (MoodAnalyserException e)
+        }
+        catch (MoodAnalyserException e)
         {
             Assert.assertEquals(MoodAnalyserException.MyException_Type.NULL, e.type);
         }
